@@ -1,0 +1,246 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  background: linear-gradient(135deg, rgba(255, 77, 77, 0.7), rgba(255, 153, 51, 0.7));
+  background-attachment: fixed;
+  overflow: hidden;
+  position: relative;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-image: 
+    url("https://images.pexels.com/photos/47730/the-ball-stadion-football-the-pitch-47730.jpeg?cs=srgb&dl=pexels-pixabay-47730.jpg&fm=jpg"),
+    url("https://t4.ftcdn.net/jpg/00/83/27/31/360_F_83273170_hoDfcLNfuEoTM3R8BKvmQRKFX03eVOJ3.jpg"),
+    url("https://4kwallpapers.com/images/wallpapers/boxing-punch-gloves-3840x2160-15477.jpg"),
+    url("https://images7.alphacoders.com/734/734192.jpg");
+  background-repeat: no-repeat;
+  background-position: 20% 20%, 80% 15%, 25% 80%, 75% 85%;
+  background-size: 60% 60%;
+  filter: blur(3px) brightness(0.9) saturate(1.1);
+  opacity: 0.9;
+  transform: scale(1.05);
+  mix-blend-mode: lighten;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.25);
+  z-index: -1;
+}
+
+/* 🧠 Quiz container */
+.quiz-container {
+  width: 90%;
+  max-width: 800px;
+  margin: 5vh auto;
+  padding: 5vw;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  color: #000;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(4px);
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+/* 🔙 Back button */
+.back-btn {
+  display: inline-block;
+  padding: 8px 14px;
+  font-size: 0.95rem;
+  color: white;
+  background: linear-gradient(90deg, #ff4d4d, #ff944d);
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all 0.25s ease;
+  align-self: flex-start;
+  margin-bottom: 15px;
+}
+
+.back-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 77, 77, 0.3);
+}
+
+/* Header */
+.header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  position: relative;
+}
+
+h1 {
+  margin-bottom: 10px;
+  color: #111;
+  font-weight: 700;
+  font-size: clamp(1.5rem, 3vw, 2.3rem);
+  letter-spacing: 0.5px;
+}
+
+/* 🔄 Language selector */
+.language-select {
+  margin-top: 5px;
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #f7f7f7;
+  cursor: pointer;
+  color: black;
+}
+
+/* Reszta stylu – pytania, odpowiedzi, animacje, itp. */
+.question-card {
+  margin-top: 25px;
+  animation: fadeIn 0.5s ease;
+}
+
+.question-text {
+  display: block;
+  width: 100%;
+  padding: 4vw 2vw;
+  background: #fff4f0;
+  border-radius: 14px;
+  border: 2px solid #ff4d4d;
+  font-weight: 600;
+  font-size: clamp(1rem, 2vw, 1.3rem);
+  color: #000;
+  margin: 25px 0;
+  text-align: center;
+  box-shadow: inset 0 2px 6px rgba(255, 77, 77, 0.1);
+}
+
+.answers-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+  margin-top: 10px;
+}
+
+@media (min-width: 700px) {
+  .answers-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.answer-btn {
+  padding: clamp(10px, 2vw, 16px);
+  border-radius: 10px;
+  border: 2px solid #ddd;
+  background: white;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  color: #000;
+  font-weight: 500;
+  font-size: clamp(0.9rem, 1.8vw, 1rem);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.answer-btn:hover {
+  background: #fff0ed;
+  transform: scale(1.03);
+}
+
+.answer-btn.selected {
+  border-color: #ff4d4d;
+  background: #ffeaea;
+}
+
+.answer-btn.correct {
+  background: #d4edda;
+  border-color: #28a745;
+  color: #155724;
+}
+
+.answer-btn.wrong {
+  background: #f8d7da;
+  border-color: #dc3545;
+  color: #721c24;
+}
+
+/* 🔘 Buttons */
+.start-btn,
+.next-btn,
+.restart-btn {
+  padding: clamp(10px, 2vw, 14px) clamp(20px, 4vw, 30px);
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  border-radius: 10px;
+  cursor: pointer;
+  background: linear-gradient(90deg, #ff4d4d, #ff944d);
+  color: white;
+  border: none;
+  margin-top: 25px;
+  transition: all 0.25s ease;
+  font-weight: 600;
+}
+
+.start-btn:hover,
+.next-btn:hover,
+.restart-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 10px rgba(255, 77, 77, 0.3);
+}
+
+.next-btn:disabled {
+  background: #bbb;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* 📊 Progress bar */
+.progress-bar {
+  width: 100%;
+  height: 14px;
+  background: #f0f0f0;
+  border-radius: 10px;
+  margin-top: 35px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #ff4d4d, #ff944d);
+  border-radius: 10px;
+  transition: width 0.5s ease-in-out;
+}
+
+/* ✨ Animacje */
+.fade-in {
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.fade-out {
+  animation: fadeOut 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeOut {
+  from { opacity: 1; transform: translateY(0); }
+  to { opacity: 0; transform: translateY(-15px); }
+}
