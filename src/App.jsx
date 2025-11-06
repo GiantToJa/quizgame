@@ -121,7 +121,7 @@ export default function QuizApp() {
   return (
     <div className="quiz-container">
       <div className="header">
-        <a href="#" className="back-btn">
+        <a href="https://3ryk-prog.github.io/3ryk-ProgP" className="back-btn">
           {translations[language].back}
         </a>
 
